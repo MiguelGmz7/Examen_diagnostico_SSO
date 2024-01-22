@@ -7,7 +7,7 @@ from pathlib import Path
 
 from tkinter import *
 # Explicit imports to satisfy Flake8
-#from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
+#from tkinter import Tk, self.canvas, Entry, Text, Button, PhotoImage
 
 
 OUTPUT_PATH = Path(__file__).parent
@@ -17,170 +17,175 @@ ASSETS_PATH = OUTPUT_PATH / Path(r"/run/media/miguel/Data/User/Sem_SO/fkinTkinte
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
+class MyGUI:
+    def __init__(self):
+        self.window = Tk()
 
-window = Tk()
+        self.window.geometry("668x593")
+        self.window.configure(bg = "#FFFFFF")
 
-window.geometry("668x593")
-window.configure(bg = "#FFFFFF")
+        
+        self.canvas = Canvas(
+        self.window,
+        bg = "#FFFFFF",
+        height = 593,
+        width = 668,
+        bd = 0,
+        highlightthickness = 0,
+        relief = "ridge"
+        )
 
+        self.canvas.place(x = 0, y = 0)
+        image_image_1 = PhotoImage(
+            file=relative_to_assets("image_1.png"))
+        image_1 = self.canvas.create_image(
+            334.0,
+            50.0,
+            image=image_image_1
+        )
 
-canvas = Canvas(
-    window,
-    bg = "#FFFFFF",
-    height = 593,
-    width = 668,
-    bd = 0,
-    highlightthickness = 0,
-    relief = "ridge"
-)
+        image_image_2 = PhotoImage(
+            file=relative_to_assets("image_2.png"))
+        image_2 = self.canvas.create_image(
+            156.0,
+            215.0,
+            image=image_image_2
+        )
 
-canvas.place(x = 0, y = 0)
-image_image_1 = PhotoImage(
-    file=relative_to_assets("image_1.png"))
-image_1 = canvas.create_image(
-    334.0,
-    50.0,
-    image=image_image_1
-)
+        image_image_3 = PhotoImage(
+            file=relative_to_assets("image_3.png"))
+        image_3 = self.canvas.create_image(
+            454.0,
+            215.0,
+            image=image_image_3
+        )
 
-image_image_2 = PhotoImage(
-    file=relative_to_assets("image_2.png"))
-image_2 = canvas.create_image(
-    156.0,
-    215.0,
-    image=image_image_2
-)
+        entry_image_1 = PhotoImage(
+            file=relative_to_assets("entry_1.png"))
+        entry_bg_1 = self.canvas.create_image(
+            194.5,
+            283.5,
+            image=entry_image_1
+        )
+        self.entry_1 = Entry(
+            bd=0,
+            bg="#D5D5D5",
+            fg="#000716",
+            highlightthickness=0
+        )
+        self.entry_1.place(
+            x=112.0,
+            y=265.0,
+            width=165.0,
+            height=35.0
+        )
 
-image_image_3 = PhotoImage(
-    file=relative_to_assets("image_3.png"))
-image_3 = canvas.create_image(
-    454.0,
-    215.0,
-    image=image_image_3
-)
+        entry_image_2 = PhotoImage(
+            file=relative_to_assets("entry_2.png"))
+        entry_bg_2 = self.canvas.create_image(
+            492.5,
+            283.5,
+            image=entry_image_2
+        )
+        self.entry_2 = Entry(
+            bd=0,
+            bg="#D5D5D5",
+            fg="#000716",
+            highlightthickness=0
+        )
+        self.entry_2.place(
+            x=410.0,
+            y=265.0,
+            width=165.0,
+            height=35.0
+        )
 
-entry_image_1 = PhotoImage(
-    file=relative_to_assets("entry_1.png"))
-entry_bg_1 = canvas.create_image(
-    194.5,
-    283.5,
-    image=entry_image_1
-)
-entry_1 = Entry(
-    bd=0,
-    bg="#D5D5D5",
-    fg="#000716",
-    highlightthickness=0
-)
-entry_1.place(
-    x=112.0,
-    y=265.0,
-    width=165.0,
-    height=35.0
-)
+        button_image_1 = PhotoImage(
+            file=relative_to_assets("button_1.png"))
+        self.button_1 = Button(
+            image=button_image_1,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: print("button_1 clicked"),
+            relief="flat"
+        )
+        self.button_1.place(
+            x=75.0,
+            y=517.0,
+            width=207.0,
+            height=40.0
+        )
 
-entry_image_2 = PhotoImage(
-    file=relative_to_assets("entry_2.png"))
-entry_bg_2 = canvas.create_image(
-    492.5,
-    283.5,
-    image=entry_image_2
-)
-entry_2 = Entry(
-    bd=0,
-    bg="#D5D5D5",
-    fg="#000716",
-    highlightthickness=0
-)
-entry_2.place(
-    x=410.0,
-    y=265.0,
-    width=165.0,
-    height=35.0
-)
+        button_image_2 = PhotoImage(
+            file=relative_to_assets("button_2.png"))
+        self.button_2 = Button(
+            image=button_image_2,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: print("button_2 clicked"),
+            relief="flat"
+        )
+        self.button_2.place(
+            x=401.0,
+            y=517.0,
+            width=207.0,
+            height=40.0
+        )
 
-button_image_1 = PhotoImage(
-    file=relative_to_assets("button_1.png"))
-button_1 = Button(
-    image=button_image_1,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_1 clicked"),
-    relief="flat"
-)
-button_1.place(
-    x=75.0,
-    y=517.0,
-    width=207.0,
-    height=40.0
-)
+        self.canvas.create_rectangle(
+            63.0,
+            336.0,
+            620.0,
+            496.0,
+            fill="#EEE8B7",
+            outline="")
 
-button_image_2 = PhotoImage(
-    file=relative_to_assets("button_2.png"))
-button_2 = Button(
-    image=button_image_2,
-    borderwidth=0,
-    highlightthickness=0,
-    command=lambda: print("button_2 clicked"),
-    relief="flat"
-)
-button_2.place(
-    x=401.0,
-    y=517.0,
-    width=207.0,
-    height=40.0
-)
+        self.canvas.create_text(
+            63.0,
+            336.0,
+            anchor="nw",
+            text="test",
+            fill="#000000",
+            font=("JetBrainsMonoRoman Regular", 15 * -1)
+        )
 
-canvas.create_rectangle(
-    63.0,
-    336.0,
-    620.0,
-    496.0,
-    fill="#EEE8B7",
-    outline="")
+        self.canvas2 = Canvas(
+            self.canvas,
+            bg = "#EEE8B7",
+            height=160,
+            width=557,
+            bd=0
+        )
+        self.canvas2.place(x=63.0,y=336.0)
 
-canvas.create_text(
-    63.0,
-    336.0,
-    anchor="nw",
-    text="test",
-    fill="#000000",
-    font=("JetBrainsMonoRoman Regular", 15 * -1)
-)
+        self.my_label = Label(self.canvas2,
+            #63.0,
+            #278.0,
+            bd=1,
+            text = "+\n+++\n++++++\n+++\n++++\n+++++++++++++++",
+            font=("Helvetica",18))
 
-canvas2 = Canvas(
-    canvas,
-    bg = "#EEE8B7",
-    height=160,
-    width=557,
-    bd=0
-)
-canvas2.place(x=63.0,y=336.0)
+        self.my_label.pack()
 
-my_label = Label(canvas2,
-    #63.0,
-    #278.0,
-    bd=1,
-    text = "+\n+++\n++++++\n+++\n++++\n+++++++++++++++",
-    font=("Helvetica",18))
+        image_image_4 = PhotoImage(
+            file=relative_to_assets("image_4.png"))
+        image_4 = self.canvas.create_image(
+            334.0,
+            136.0,
+            image=image_image_4
+        )
 
-my_label.pack()
+        self.canvas.create_text(
+            282.0,
+            105.0,
+            anchor="nw",
+            text="00:00",
+            fill="#FFFFFF",
+            font=("JosefinSansRoman Regular", 31)
+        )
 
-image_image_4 = PhotoImage(
-    file=relative_to_assets("image_4.png"))
-image_4 = canvas.create_image(
-    334.0,
-    136.0,
-    image=image_image_4
-)
+        self.window.resizable(False, False)
+        self.window.mainloop()
 
-canvas.create_text(
-    282.0,
-    105.0,
-    anchor="nw",
-    text="00:00",
-    fill="#FFFFFF",
-    font=("JosefinSansRoman Regular", 31)
-)
-window.resizable(False, False)
-window.mainloop()
+MyGUI()
+
