@@ -237,6 +237,7 @@ class MyGUI:
     def stop_timer(self):
         self.running = False
         self.update_time()
+        messagebox.showinfo("Cronometro","El cronometro se detuvo en: "+self.time_string.get())
         self.seconds = 0
         self.canvas.itemconfig(self.clock, text = "0:00")
 
