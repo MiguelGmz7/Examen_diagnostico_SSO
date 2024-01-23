@@ -6,6 +6,7 @@
 from pathlib import Path
 from tkinter import *
 from tkinter import messagebox
+import tkinter as tk
 
 
 
@@ -179,6 +180,9 @@ class MyGUI:
             image=image_image_4
         )
 
+        self.time_string = tk.StringVar()
+        self.seconds = 0
+        
         self.clock = self.canvas.create_text(
             282.0,
             105.0,
@@ -209,9 +213,23 @@ class MyGUI:
         
         # piramide = "x\n"+"xxx\n"+"xxxxx\n"
         self.my_label.config(text=piramide)
+        self.update_time()
+        
+        # self.running = True
 
+    def update_time(self):
+        # if self.running:
+        self.seconds += 1
+        minutes = self.seconds // 60
+        seconds = self.seconds % 60
+        self.time_string.set(f"{minutes}:{seconds:02}")
+        self.window.after(1000, self.update_time)
+        self.canvas.itemconfig(self.clock, text = self.time_string.get())
 
-    def imp_num(self):
+    # def stop_timer(self):
+    #     self.running = False
+
+    def limpiar(self):
         print(self.num)
 MyGUI()
 
