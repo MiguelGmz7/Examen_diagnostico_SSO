@@ -111,7 +111,7 @@ class MyGUI:
             image=button_image_1,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: print("hola"),
+            command=self.limpiar,
             relief="flat"
         )
         self.button_1.place(
@@ -182,12 +182,13 @@ class MyGUI:
 
         self.time_string = tk.StringVar()
         self.seconds = 0
+        self.running = False
         
         self.clock = self.canvas.create_text(
             282.0,
             105.0,
             anchor="nw",
-            text="00:00",
+            text="0:00",
             fill="#FFFFFF",
             font=("JosefinSansRoman Regular", 31)
         )
@@ -196,6 +197,13 @@ class MyGUI:
         self.window.mainloop()
     
     def imprimir(self):
+        try:
+            if self.running:
+                raise Exception
+        except Exception:
+            messagebox.showerror("Error","Tienes que limpiar la pantalla primero")
+            return
+       
         self.sim = self.entry_1.get()
         self.num = self.entry_2.get()
         
@@ -213,23 +221,28 @@ class MyGUI:
         
         # piramide = "x\n"+"xxx\n"+"xxxxx\n"
         self.my_label.config(text=piramide)
-        self.update_time()
         
-        # self.running = True
+        self.running = True
+        self.update_time()
 
     def update_time(self):
-        # if self.running:
-        self.seconds += 1
-        minutes = self.seconds // 60
-        seconds = self.seconds % 60
-        self.time_string.set(f"{minutes}:{seconds:02}")
-        self.window.after(1000, self.update_time)
-        self.canvas.itemconfig(self.clock, text = self.time_string.get())
+        if self.running:
+            self.seconds += 1
+            minutes = self.seconds // 60
+            seconds = self.seconds % 60
+            self.time_string.set(f"{minutes}:{seconds:02}")
+            self.window.after(1000, self.update_time)
+            self.canvas.itemconfig(self.clock, text = self.time_string.get())
 
-    # def stop_timer(self):
-    #     self.running = False
+    def stop_timer(self):
+        self.running = False
+        self.update_time()
 
     def limpiar(self):
-        print(self.num)
+        self.stop_timer()
+        self.seconds = 0
+        self.canvas.itemconfig(self.clock, text = "0:00")
+
+
 MyGUI()
 
