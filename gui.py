@@ -237,12 +237,14 @@ class MyGUI:
     def stop_timer(self):
         self.running = False
         self.update_time()
-
-    def limpiar(self):
-        self.stop_timer()
         self.seconds = 0
         self.canvas.itemconfig(self.clock, text = "0:00")
 
+    def limpiar(self):
+        self.stop_timer()
+        self.my_label.config(text="")
+        self.entry_1.delete(0, 'end')
+        self.entry_2.delete(0, 'end')
 
 MyGUI()
 
