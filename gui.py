@@ -6,6 +6,8 @@
 from pathlib import Path
 
 from tkinter import *
+
+
 # Explicit imports to satisfy Flake8
 #from tkinter import Tk, self.canvas, Entry, Text, Button, PhotoImage
 
@@ -102,11 +104,12 @@ class MyGUI:
 
         button_image_1 = PhotoImage(
             file=relative_to_assets("button_1.png"))
+        
         self.button_1 = Button(
             image=button_image_1,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: print("button_1 clicked"),
+            command=self.get_num,
             relief="flat"
         )
         self.button_1.place(
@@ -122,7 +125,7 @@ class MyGUI:
             image=button_image_2,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: print("button_2 clicked"),
+            command=self.imp_num,
             relief="flat"
         )
         self.button_2.place(
@@ -186,6 +189,13 @@ class MyGUI:
 
         self.window.resizable(False, False)
         self.window.mainloop()
+    
+    def get_num(self):
+        self.sim = self.entry_1.get()
+        self.num = self.entry_2.get()
+        print("simbolo: ",self.sim,"\n","Numero: ",self.num)
 
+    def imp_num(self):
+        print(self.num)
 MyGUI()
 
