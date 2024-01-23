@@ -4,8 +4,9 @@
 
 
 from pathlib import Path
-
 from tkinter import *
+from tkinter import messagebox
+
 
 
 # Explicit imports to satisfy Flake8
@@ -109,7 +110,7 @@ class MyGUI:
             image=button_image_1,
             borderwidth=0,
             highlightthickness=0,
-            command=self.get_num,
+            command=lambda: print("hola"),
             relief="flat"
         )
         self.button_1.place(
@@ -125,7 +126,7 @@ class MyGUI:
             image=button_image_2,
             borderwidth=0,
             highlightthickness=0,
-            command=self.imp_num,
+            command=self.imprimir,
             relief="flat"
         )
         self.button_2.place(
@@ -178,7 +179,7 @@ class MyGUI:
             image=image_image_4
         )
 
-        self.canvas.create_text(
+        self.clock = self.canvas.create_text(
             282.0,
             105.0,
             anchor="nw",
@@ -190,10 +191,25 @@ class MyGUI:
         self.window.resizable(False, False)
         self.window.mainloop()
     
-    def get_num(self):
+    def imprimir(self):
         self.sim = self.entry_1.get()
         self.num = self.entry_2.get()
-        print("simbolo: ",self.sim,"\n","Numero: ",self.num)
+        
+        try: #Comprobamos que el numero sea un entero positivo
+            num_int = int(self.num)
+            if num_int <= 0:
+                raise ValueError
+        except ValueError:
+            messagebox.showerror("Error","El número solo puede ser un positivo mayor a cero")
+        
+        piramide = ""
+        for i in range(1, int(self.num) + 1):
+            piramide += self.sim * (2*i-1) + "\n" 
+               
+        
+        # piramide = "x\n"+"xxx\n"+"xxxxx\n"
+        self.my_label.config(text=piramide)
+
 
     def imp_num(self):
         print(self.num)
