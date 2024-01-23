@@ -23,13 +23,15 @@ def relative_to_assets(path: str) -> Path:
 
 class MyGUI:
     def __init__(self):
-        self.window = Tk()
+        #-------- Creacion del GUI ---------
+
+        self.window = Tk() # El frame
 
         self.window.geometry("668x593")
         self.window.configure(bg = "#FFFFFF")
 
         
-        self.canvas = Canvas(
+        self.canvas = Canvas( # La ventana principal (casí lo mismo que el frame)
         self.window,
         bg = "#FFFFFF",
         height = 593,
@@ -40,7 +42,7 @@ class MyGUI:
         )
 
         self.canvas.place(x = 0, y = 0)
-        image_image_1 = PhotoImage(
+        image_image_1 = PhotoImage( # Letrero de simbolo
             file=relative_to_assets("image_1.png"))
         image_1 = self.canvas.create_image(
             334.0,
@@ -149,7 +151,7 @@ class MyGUI:
             63.0,
             336.0,
             anchor="nw",
-            text="test",
+            text="",
             fill="#000000",
             font=("JetBrainsMonoRoman Regular", 15 * -1)
         )
@@ -167,10 +169,10 @@ class MyGUI:
             #63.0,
             #278.0,
             bd=1,
-            text = "+\n+++\n++++++\n+++\n++++\n+++++++++++++++",
+            bg="#EEE8B7",
             font=("Helvetica",18))
 
-        self.my_label.pack()
+        self.my_label.pack() # Con esto se centra el texto
 
         image_image_4 = PhotoImage(
             file=relative_to_assets("image_4.png"))
@@ -195,6 +197,9 @@ class MyGUI:
 
         self.window.resizable(False, False)
         self.window.mainloop()
+        #-----------------------------------
+
+        #Aquí empiezan las funciones
     
     def imprimir(self):
         try:
@@ -225,7 +230,7 @@ class MyGUI:
         self.running = True
         self.update_time()
 
-    def update_time(self):
+    def update_time(self): # configuracion del reloj
         if self.running:
             self.seconds += 1
             minutes = self.seconds // 60
